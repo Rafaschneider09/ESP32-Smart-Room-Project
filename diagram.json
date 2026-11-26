@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "author": "Rafael Schneider",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": -4.76, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": 44.4, "left": -63.4, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 54,
+      "left": -101.8,
+      "attrs": { "color": "green" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "led2:A", "esp:27", "green", [ "v0" ] ],
+    [ "led1:A", "esp:26", "red", [ "v0" ] ],
+    [ "led1:C", "esp:GND.2", "red", [ "h-9.2", "v-96", "h158.36" ] ],
+    [ "led2:C", "esp:GND.2", "green", [ "h-9.2", "v-115.2", "h201.6", "v48" ] ]
+  ],
+  "dependencies": {}
+}
