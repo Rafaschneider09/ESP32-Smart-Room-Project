@@ -1,3 +1,5 @@
+#include <ArduinoJson.h>
+
 const int RELE_FECHAR = 26;
 const int RELE_ABRIR = 27;
 int posicaoAtual = 20;
@@ -46,13 +48,37 @@ void moverJanela() {
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  Serial.println("Hello, ESP32!");
+  Serial.println("Monitor on, ESP32!");
   pinMode(RELE_FECHAR, OUTPUT);
   pinMode(RELE_ABRIR, OUTPUT);
-  moverJanela();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   delay(10); // this speeds up the simulation
+  if (Serial.available() > 0) {
+    String input = Serial.readStringUntil('\n');
+    Serial.println("Recebi: " + input);
+    JsonDocument doc;
+    DeserializationError erro = deserializeJson(doc, input);
+    if (erro) {
+      Serial.println("Json Inválido");
+    } else {
+      String device = doc["device"];
+      String action = doc["action"];
+      int posicao = doc["posicao"];
+    
+      if (device == "janela" && action == "mover" && doc["posicao"].is<int>()) {
+        Serial.println(device);
+        Serial.println(action);
+        Serial.println(posicao);
+        posicaoDesejada = posicao;
+        moverJanela();
+        Serial.println(posicaoAtual);
+      } else {
+        Serial.println("Mensagem incompleta ou desconhecida");
+      }
+    }
+  } 
 }
+  

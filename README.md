@@ -8,7 +8,7 @@ Work in progress. So far, only the window logic exists, and only in simulation.
 
 - [x] Message format designed (JSON)
 - [x] Window position logic (0-100%) written and tested in the Wokwi simulator, with LEDs standing in for the relays
-- [ ] Receive and parse JSON messages on the ESP32
+- [x] Receive and parse JSON messages on the ESP32
 - [ ] Wi-Fi connection and phone app
 - [ ] Infrared control for the AC and fan
 - [ ] Smart light control
@@ -45,7 +45,7 @@ Each message has a `device`, an `action` and, when needed, a named numeric value
 {"device": "janela", "action": "mover", "posicao": 50}
 ```
 
-Device names and actions are in Portuguese. The ESP32 does not read these messages yet, for now the window values are set directly in the code.
+Device names and actions are in Portuguese. The ESP32 reads the messages, for now the window values are set directly in the code.
 
 ## Window Logic
 
@@ -69,7 +69,7 @@ Known limitations: the starting position is assumed, and the estimate can drift 
 
 This was my first sketch while working out the logic:
 
-![Window motors - idea sketch](<docs/ESP32 - Window idea.jpeg>)
+![Window motors - idea sketch](<docs/window-sketch.jpeg>)
 
 ## How To Run The Simulation
 
