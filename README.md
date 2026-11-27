@@ -28,12 +28,12 @@ The phone sends a small JSON message saying which device to control and what to 
 
 ## Commands
 
- Device and Actions: 
-
- AC -> on/off, temperature, mode 
- Fan -> on/off, level 1-3, normal/exhaust mode 
- Lights -> on/off, color, dimmer 
- Window -> move to a position from 0% to 100% 
+| Device | Actions |
+|--------|---------|
+| AC | on/off, temperature, mode |
+| Fan | on/off, level 1-3, normal/exhaust mode |
+| Lights | on/off, color, dimmer |
+| Window | move to a position from 0% to 100% |
 
 ## Message Format
 
